@@ -1,0 +1,17 @@
+[america]
+192.168.1.254
+
+[europe]
+192.168.2.254
+
+[asia]
+192.168.3.254
+
+[firewalls:children]
+america
+europe
+asia
+
+[firewalls:vars]
+ansible_ssh_user=root
+ansible_python_interpreter=/usr/local/bin/python

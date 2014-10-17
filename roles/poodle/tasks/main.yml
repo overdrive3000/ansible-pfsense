@@ -1,0 +1,5 @@
+---
+- name: patch lighttpd
+  lineinfile: dest=/etc/inc/system.inc state=present regexp="ssl.use-sslv3" insertafter="ssl.use-sslv2" line='                $lighty_config .= "ssl.use-sslv3 = \\"disable\\"\\n";'
+  notify:
+    - restart webgui

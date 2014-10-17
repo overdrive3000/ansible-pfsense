@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: "Juan Mesa"
+  license: MIT
+  min_ansible_version: 1.7
+  platforms:
+    - name: pfSense
+      versions:
+        - 2.1_RELEASE
+        - 2.3_RELEASE
+  categories:
+    - firewall
+    - network
+dependencies: []

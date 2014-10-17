@@ -1,0 +1,20 @@
+---
+- name: installing python
+  hosts: firewalls
+  gather_facts: no
+
+  roles: 
+    - python
+
+  tags:
+    - preconfig
+
+- name: disable sslv3
+  hosts: firewalls
+
+  roles:
+    - poodle
+
+  tags:
+    - sslv3
+

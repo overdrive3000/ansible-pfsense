@@ -1,0 +1,12 @@
+---
+- name: detecting freebsd version
+  raw: /usr/bin/uname -r -m | tr ' ' '\n'
+  register: version
+
+- name: installing python freebsd 8.1
+  raw: pkg_add -r ftp://ftp-archive.freebsd.org/pub/FreeBSD-Archive/ports/{{ version.stdout_lines[1] }}/packages-8.1-release/Latest/python.tbz
+  when: version.stdout_lines[0].find('8.1-RELEASE') == 0
+
+- name: installing python freebsd 8.3
+  raw: pkg_add -r ftp://ftp-archive.freebsd.org/pub/FreeBSD-Archive/ports/{{ version.stdout_lines[1] }}/packages-8.3-release/Latest/python.tbz
+  when: version.stdout_lines[0].find('8.3-RELEASE') == 0
