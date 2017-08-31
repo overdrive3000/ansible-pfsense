@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - touch file01.odd
+      - touch file02.odd
+      - touch file03.odd
+  post_builds:
+    commands:
+      - rm -rf /tmp/output-dir && mkdir /tmp/output-dir
+      - find . -name "*.odd" -exec cp {} /tmp/output-dir \;
+      - ls -la /tmp/output-dir
+  artifacts:
+    base-directory: /tmp/output-dir
+    files:
+      - '*'
