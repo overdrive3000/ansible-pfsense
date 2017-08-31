@@ -7,6 +7,8 @@ phases:
       - touch file01.odd
       - touch file02.odd
       - touch file03.odd
+      - echo `pwd`
+      - ls -la
   post_build:
     commands:
       - rm -rf /tmp/output-dir && mkdir /tmp/output-dir
