@@ -4,15 +4,15 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - touch file01.odd
-      - touch file02.odd
-      - touch file03.odd
+      - touch file01.zip
+      - touch file02.zip
+      - touch file03.zip
       - echo `pwd`
       - ls -la
   post_build:
     commands:
       - rm -rf /tmp/output-dir && mkdir /tmp/output-dir
-      - find . -name "*.odd" -exec cp {} /tmp/output-dir \;
+      - find . -name "*.zip" -exec cp {} /tmp/output-dir \;
       - ls -la /tmp/output-dir
 artifacts:
   base-directory: /tmp/output-dir
