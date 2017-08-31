@@ -12,7 +12,7 @@ phases:
       - rm -rf /tmp/output-dir && mkdir /tmp/output-dir
       - find . -name "*.odd" -exec cp {} /tmp/output-dir \;
       - ls -la /tmp/output-dir
-  artifacts:
-    base-directory: /tmp/output-dir
-    files:
-      - '*'
+artifacts:
+  base-directory: /tmp/output-dir
+  files:
+    - '*'
