@@ -7,8 +7,7 @@ phases:
       - touch file01.zip
       - touch file02.zip
       - touch file03.zip
-      - echo `pwd`
-      - ls -la
+      - ls -la /codebuild
   post_build:
     commands:
       - rm -rf /tmp/output-dir && mkdir /tmp/output-dir
