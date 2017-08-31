@@ -7,7 +7,7 @@ phases:
       - touch file01.odd
       - touch file02.odd
       - touch file03.odd
-  post_builds:
+  post_build:
     commands:
       - rm -rf /tmp/output-dir && mkdir /tmp/output-dir
       - find . -name "*.odd" -exec cp {} /tmp/output-dir \;
