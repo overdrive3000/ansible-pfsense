@@ -10,7 +10,7 @@ phases:
       - ls -la /codebuild
       - echo Found out git commit id
       - |
-        PIPELINE=$(aws --region eu-west-1 codebuild batch-get-builds --ids="" --query 'builds[].initiator' --output text) && \
+        PIPELINE=$(aws --region eu-west-1 codebuild batch-get-builds --ids="${CODEBUILD_BUILD_ID}" --query 'builds[].initiator' --output text) && \
         EXECUTION_ID=$(aws --region eu-west-1 codepipeline get-pipeline-state --name TestCodeBuild --query 'stageStates[?actionStates[?latestExecution.externalExecutionId==`''`]].latestExecution.pipelineExecutionId' --output text) && \
         GIT_COMMIT=$(aws --region eu-west-1 codepipeline get-pipeline-execution --pipeline-name TestCodeBuild --pipeline-execution-id $EXECUTION_ID --query 'pipelineExecution.artifactRevisions[0].revisionId' --output text) && \
         echo $GIT_COMMIT
