@@ -10,11 +10,11 @@ phases:
       - ls -la /codebuild
       - echo Found out git commit id
       - aws --region eu-west-1 codebuild batch-get-builds --ids="${CODEBUILD_BUILD_ID}" --query 'builds[].initiator' --output text
-      - aws --region eu-west-1 codepipeline get-pipeline-state --name TestCodeBuild --query 'stageStates[?actionStates[?latestExecution.externalExecutionId==`''`]].latestExecution.pipelineExecutionId' --output text
+      - aws --region eu-west-1 codepipeline get-pipeline-state --name TestCodeBuild --query 'stageStates[?actionStates[?actionName==`'CodeBuild'`]].latestExecution.pipelineExecutionId' --output text
       - aws --region eu-west-1 codepipeline get-pipeline-execution --pipeline-name TestCodeBuild --pipeline-execution-id "e734ff05-7b46-48d2-8021-b6a055da5228" --query 'pipelineExecution.artifactRevisions[0].revisionId' --output text
       - |
         PIPELINE=$(aws --region eu-west-1 codebuild batch-get-builds --ids="${CODEBUILD_BUILD_ID}" --query 'builds[].initiator' --output text) && \
-        EXECUTION_ID=$(aws --region eu-west-1 codepipeline get-pipeline-state --name TestCodeBuild --query 'stageStates[?actionStates[?latestExecution.externalExecutionId==`''`]].latestExecution.pipelineExecutionId' --output text) && \
+        EXECUTION_ID=$(aws --region eu-west-1 codepipeline get-pipeline-state --name TestCodeBuild --query 'stageStates[?actionStates[?actionName==`'CodeBuild'`]].latestExecution.pipelineExecutionId' --output text) && \
         GIT_COMMIT=$(aws --region eu-west-1 codepipeline get-pipeline-execution --pipeline-name TestCodeBuild --pipeline-execution-id $EXECUTION_ID --query 'pipelineExecution.artifactRevisions[0].revisionId' --output text) && \
         echo $GIT_COMMIT
   post_build:
