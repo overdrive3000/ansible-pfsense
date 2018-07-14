@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Build started on `date`
       - touch file01.zip
-      - touch file02.zip
+      - touch file03.zip
       - ls -la /codebuild
   post_build:
     commands:
